@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Define the directory containing split zip files and the output directory
+input_directory=$1
+
+# Concatenate the split zip files into a single zip file
+cat "$input_directory"/*.zip > "mzip.zip"

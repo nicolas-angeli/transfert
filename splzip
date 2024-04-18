@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define the input folder and output directory
+input_folder=$1
+output_directory="zips"
+
+# Create the output directory if it doesn't exist
+mkdir -p "$output_directory"
+
+# Split the folder into multiple zip files
+split -b 20M -d -a 3 <(zip -r - "$input_folder") "$output_directory/part-"
+
+# Rename the split files to have a .zip extension
+for file in "$output_directory"/part-*; do
+    mv "$file" "$file.zip"
+done
